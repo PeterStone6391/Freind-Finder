@@ -27,5 +27,14 @@ module.exports = function(app) {
   });
   app.post("/api/new", function(req, res) {
     console.log(req.body);
+    var dbQuery = "INSERT INTO profiles (name, photo, scores) VALUES (?,?,?)";
+    connection.query(
+      dbQuery,
+      [req.body.name, req.body.photo, req.body.scores.join()],
+      function(err, result) {
+        if (err) throw err;
+        res.json(result);
+      }
+    );
   });
 };
