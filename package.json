@@ -20,6 +20,7 @@
   "homepage": "https://github.com/PeterStone6391/Friend-Finder#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "json": "^9.0.6"
+    "json": "^9.0.6",
+    "mysql": "^2.16.0"
   }
 }
