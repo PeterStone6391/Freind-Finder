@@ -25,4 +25,7 @@ module.exports = function(app) {
       res.json(result);
     });
   });
+  app.post("/api/new", function(req, res) {
+    console.log(req.body);
+  });
 };
