@@ -1,13 +1,16 @@
 var mysql = require("mysql");
-
+var connection;
 // must edit this to work with MAMP
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 8889,
-  user: "root",
-  password: "root",
-  database: "friend_finder"
-});
+if (process.env.JAWSDB_URL) {
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    port: 8889,
+    user: "root",
+    password: "root",
+    database: "friend_finder"
+  });
+}
 
 connection.connect(function(err) {
   if (err) {
