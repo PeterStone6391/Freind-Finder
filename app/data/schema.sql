@@ -1,4 +1,5 @@
-create database friend_finder;
+DROP DATABASE IF EXISTS friend_finder;
+CREATE database friend_finder;
 use friend_finder;
 CREATE TABLE IF NOT EXISTS profiles (
    name VARCHAR(25),
