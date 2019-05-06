@@ -49,24 +49,32 @@
 // };
 var mysql = require("mysql");
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 8889,
-  user: "root",
-  password: "root",
-  database: "friend_finder"
-});
+var connection;
 
-connection.connect(function (err) {
+if (process.env.JAWSDB_URL) {
+  // Database is JawsDB on Heroku
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    port: 8889,
+    user: "root",
+    password: "root",
+    database: "friend_finder"
+  });
+}
+
+connection.connect(function(err) {
   if (err) {
     console.error("error connecting: " + err.stack);
     return;
   }
   console.log("connected as id " + connection.threadId);
 });
-module.exports = function (app) {
-  app.get("/api/friends", function (req, res) {
-    connection.query("SELECT * FROM profiles", function (err, result) {
+module.exports = function(app) {
+  app.get("/api/friends", function(req, res) {
+    connection.query("SELECT * FROM profiles", function(err, result) {
       res.json(result);
     });
   });
+};
